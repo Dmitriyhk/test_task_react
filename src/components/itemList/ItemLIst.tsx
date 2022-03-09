@@ -1,8 +1,10 @@
 import React, { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useActions } from '../hooks/useActions';
-import { useTypedSelector } from '../hooks/useTypedSelector';
-import { fetchItems } from '../store/action-creators/item';
+import { useActions } from '../../hooks/useActions';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { fetchItems } from '../../store/action-creators/item';
+import Item from '../Item/Item';
+import './ItemList.css'
 
 const ItemLIst: FC = () => {
   const {error, items, loading} = useTypedSelector(state => state.item)
@@ -18,9 +20,9 @@ const ItemLIst: FC = () => {
     return <h1>{error}</h1>
   }
   return (
-    <div>
+    <div className='itemList'>
       {items.map(item =>
-        <div key={item.id}>{item.name}</div>  
+        <Item key={item.id} item={item}/>
       )}
     </div>
   )

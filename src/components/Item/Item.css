@@ -1,0 +1,40 @@
+.item {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 350px;
+  margin-top: 20px;
+}
+.item-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.item-wrapper__img {
+  padding-top: 10px;
+  width: 90%;
+  height: 300px;
+  object-fit:contain
+}
+
+.item__header {
+  font-size: 22px;
+  margin: 15px;
+  text-align: center;
+  height: 55px;
+  overflow: hidden;
+}
+
+.item-price {
+  padding: 50px 10px 10px;
+  display: flex;
+  justify-content: space-around
+}
+
+.item-price__value {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+
+
