@@ -1,8 +1,11 @@
 import React from 'react'
+import ItemLIst from './components/ItemLIst'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <ItemLIst/>
+    </div>
   )
 }
 
