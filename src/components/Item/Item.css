@@ -1,8 +1,14 @@
 .item {
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
   width: 350px;
   margin-top: 20px;
+  transition: .2s ease box-shadow;
 }
+
+.item:hover {
+  box-shadow: 0 2px 14px rgba(255, 55, 212, 0.6);
+}
+
 .item-wrapper {
   display: flex;
   align-items: center;

@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import MyButton from '../UI/button/MyButton'
 import './Item.css'
 interface Item {
   name: string
@@ -20,7 +21,8 @@ const Item: FC<ItemProps> = ({item}) => {
       </div>
         <h3  className='item__header'>{item.name}</h3>
         <div className='item-price'><span  className='item-price__value'>{item.price}₽</span>
-        <button>Добавить коризна</button></div>
+        <MyButton>Добавить в коризну</MyButton>
+        </div>
     </div>
   )
 }
