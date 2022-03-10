@@ -1,13 +1,15 @@
 import React, { FC } from 'react'
 import classes from './MyButton.module.css'
 
-interface IButton {
+export interface IButton {
   children: string
+  onClick?: any
+  id: any
 }
 
-const MyButton: FC<IButton> = ({children, ...props}) => {
+const MyButton: FC<IButton> = ({children, onClick, id}) => {
   return (
-    <button {...props} className={classes.myBtn}>
+    <button id={id} onClick={onClick} className={classes.myBtn}>
       {children}
     </button>
   )

@@ -6,7 +6,13 @@ import { fetchItems } from '../../store/action-creators/item';
 import Item from '../Item/Item';
 import './ItemList.css'
 
-const ItemLIst: FC = () => {
+interface ItemListProps {
+  appendToCart(item: any, quantity?: number): void
+}
+
+const ItemLIst: FC<ItemListProps> = ({appendToCart}) => {
+
+  console.log()
   const {error, items, loading} = useTypedSelector(state => state.item)
   const {fetchItems} = useActions()
   useEffect(() => {
@@ -22,7 +28,7 @@ const ItemLIst: FC = () => {
   return (
     <div className='itemList-wrapper'> <div className='itemList'>
     {items.map(item =>
-      <Item key={item.id} item={item}/>
+      <Item appendToCart={appendToCart} key={item.id} item={item}/>
     )}
   </div></div>
    
