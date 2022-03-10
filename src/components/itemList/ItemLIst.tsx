@@ -20,11 +20,12 @@ const ItemLIst: FC = () => {
     return <h1>{error}</h1>
   }
   return (
-    <div className='itemList'>
-      {items.map(item =>
-        <Item key={item.id} item={item}/>
-      )}
-    </div>
+    <div className='itemList-wrapper'> <div className='itemList'>
+    {items.map(item =>
+      <Item key={item.id} item={item}/>
+    )}
+  </div></div>
+   
   )
 }
 
