@@ -1,54 +1,51 @@
-import React, { useEffect, useState } from 'react'
-import { Route, Router } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Cart from './components/cart/Cart'
 import ItemLIst from './components/itemList/ItemLIst'
 import Navbar from './components/UI/navbar/Navbar'
 import './styles/App.css'
-
+import { Item } from './types/item'
 
 const App = () => {
-  const [inCart, setInCart] = useState<any[]>([])
+
+  const [inCart, setInCart] = useState<Item[]>([])
   const [totalPrice, setTotalPrice] = useState<number>(0)
   const [counter, setCounter] = useState<number>(0)
+
+  // Если в localstorage что-то есть, то закидываем в inCart его содержимое в виде массива
   useEffect(() => {
     if (localStorage.getItem('Item')) {
       setInCart(JSON.parse(localStorage.getItem('Item') || ''))
     }
   }, [])
+  // Считаем и выводим содержимое корзины
   useEffect(() => {
     localStorage.setItem('Item', JSON.stringify(inCart))
-    setTotalPrice(inCart.reduce((acc: number, el:any) => acc + el.price, 0))
+    setTotalPrice(inCart.reduce((acc: number, el:Item) => acc + el.price, 0))
     setCounter(inCart.length)
   }, [inCart])
-  function appendToCart(item:any, quantity:number = 1) {
-    const itemIndex = inCart.findIndex(value => value.id === item.id)
-    if (itemIndex < 0) {
-      const newItem = {...item, quantity: quantity}
-      setInCart([...inCart, newItem])
-    } else {
-      const newItem = {
-        ...inCart[itemIndex], quantity: inCart[itemIndex].quantity + quantity
-      }
-      const newCart = inCart.slice()
-      newCart.splice(itemIndex, 1, newItem)
-      setInCart(newCart)
-    }
+  
+  function appendToCart(item:Item) {
+    setInCart([...inCart, item])
   }
 
-  function removeInCart(item:any) {
+  function removeInCart(item:Item) {
     const itemIndex = inCart.findIndex(value => value.id === item.id)
     const newCart = inCart.slice()
     newCart.splice(itemIndex, 1)
     setInCart(newCart)
   }
 
-
   return (
-    <div>
+    <BrowserRouter>
       <Navbar counter={counter} totalPrice={totalPrice}/>
-      <ItemLIst appendToCart={appendToCart}/>
-      <Cart removeInCart={removeInCart} inCart={inCart}/>
-    </div>
+      <Routes>
+        <Route path={'/'} element={<ItemLIst appendToCart={appendToCart}/>}>
+        </Route>
+        <Route path={'/cart'} element={<Cart totalPrice={totalPrice} removeInCart={removeInCart} inCart={inCart}/>}>
+        </Route>
+    </Routes>
+    </BrowserRouter>
   )
 }
 

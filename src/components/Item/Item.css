@@ -3,6 +3,7 @@
   width: 350px;
   margin-top: 20px;
   transition: .2s ease box-shadow;
+  border-radius: 20px;
 }
 
 .item:hover {
@@ -32,15 +33,19 @@
 }
 
 .item-price {
-  padding: 50px 10px 10px;
+  padding: 40px 10px 20px;
   display: flex;
   justify-content: space-around
 }
 
 .item-price__value {
+  margin-top: 10px;
   font-size: 25px;
   font-weight: 700;
 }
 
-
-
+.item-btn {
+  position: relative;
+  top: 0;
+  left: 0;
+}

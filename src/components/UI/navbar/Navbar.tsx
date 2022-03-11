@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import Cart from './cart.svg'
@@ -16,31 +16,23 @@ interface NavbarProps {
 }
 
 const Navbar:FC<NavbarProps> = ({totalPrice, counter}) => {
-
-  // useEffect(() => {
-  //   console.log(inCart, 213113)
-  
-  //   // setTotal(.reduce((acc:number, el:any) => acc + el.price, 0))
-  // }, [inCart])
-    
-    
-  console.log(localStorage.getItem('Item'))
-
-
   return (
     <div className='navbar'>
       <div className='navbar-links'>
-        <a className='navbar-links__home' href='#'>Список товаров</a>
+        <Link className='navbar-links__home' to='/'>Каталог</Link>
       </div>  
-      <div className='navbar-cart'>
-        <img className='navbar-cart__icon' src={Cart} alt="Cart" />
-        {counter
-        ? <div><span className='navbar-cart__counter'>{counter}</span></div>
-        : <div></div> 
-        }
-        
-        <span className='navbar-cart__text'>Сумма<br/>{totalPrice} ₽</span>
-      </div>
+      <Link className='navbar-links__home' to='/cart'>
+        <div className='navbar-cart'>
+          <img className='navbar-cart__icon' src={Cart} alt="Cart" />
+          {counter
+            ? <div>
+                <span className='navbar-cart__counter'>{counter}</span>
+                <span className='navbar-cart__text'>Сумма<br/>{totalPrice} ₽</span>
+              </div>
+            : <div className='navbar-cart__text'><span>В корзине нет товаров</span></div> 
+          }
+        </div>
+      </Link>
     </div>
   )
 }

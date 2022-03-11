@@ -23,3 +23,10 @@ interface fetchItemsErrorAction {
 }
 
 export type ItemAction = fetchItemsAction | fetchItemsSuccessAction | fetchItemsErrorAction
+
+export interface Item {
+  name: string
+  id: number
+  image: string
+  price: number
+}
